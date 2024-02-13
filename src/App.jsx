@@ -48,7 +48,7 @@ const App = () => {
   return (
     <div className="flex flex-col h-screen w-screen">
       <Header handleSearch={handleSearch} />
-      <div className="flex-grow ">
+      <div className="flex-grow  bg-blue-900 px-4">
         {users.length > 0 && (
           <div className="flex flex-col items-center  h-full justify-center">
             <div className="flex flex-row  flex-wrap gap-2 justify-center">

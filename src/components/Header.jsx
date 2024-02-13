@@ -16,8 +16,8 @@ const Header = ({ handleSearch }) => {
       <div className="relative w-4/12">
         <input
           type="text"
-          placeholder="Search"
-          className="border-2 border-fuchsia-200 text-lg rounded-2xl py-3 px-4 focus:outline-none focus:border-blue-500 w-full"
+          placeholder="search people"
+          className=" border-2 text-lg rounded-xl py-2 px-2 focus:outline-none focus:border-blue-500 w-full"
           onChange={handleSearch}
         />
       </div>

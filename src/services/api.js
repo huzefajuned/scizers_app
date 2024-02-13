@@ -1,9 +1,3 @@
-/**
- *
- * @param {*} API_URL
- * @returns
- */
-
 import axios from "axios";
 
 export const fetchUsers = async (url) => {
