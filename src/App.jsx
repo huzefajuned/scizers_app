@@ -1,19 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import UserCard from "./components/UserCard";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
-
-const API_URL = "https://swapi.dev/api/people";
-
-const fetchUsers = async (url) => {
-  try {
-    const response = await axios.get(url);
-    return response.data;
-  } catch (error) {
-    throw new Error("Failed to fetch users");
-  }
-};
+import { fetchUsers } from "./services/api";
+import { API_URL } from "./services/common";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -56,45 +46,47 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col h-screen w-screen">
       <Header handleSearch={handleSearch} />
+      <div className="flex-grow ">
+        {users.length > 0 && (
+          <div className="flex flex-col items-center  h-full justify-center">
+            <div className="flex flex-row  flex-wrap gap-2 justify-center">
+              {filteredUsers.map((user, index) => (
+                <UserCard key={index} user={user} />
+              ))}
+            </div>
 
-      <div className="flex flex-col items-center my-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredUsers.map((user, index) => (
-            <UserCard key={index} user={user} />
-          ))}
-        </div>
-
-        <div className="flex mt-8 space-x-4">
-          <button
-            onClick={handlePrevPage}
-            disabled={!prevUrl}
-            className={`px-4 py-2 rounded-md ${
-              prevUrl
-                ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
-                : "bg-gray-300 cursor-not-allowed"
-            }`}
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={!nextUrl}
-            className={`px-4 py-2 rounded-md ${
-              nextUrl
-                ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
-                : "bg-gray-300 cursor-not-allowed"
-            }`}
-          >
-            Next
-          </button>
-        </div>
+            <div className="flex mt-8 space-x-4">
+              <button
+                onClick={handlePrevPage}
+                disabled={!prevUrl}
+                className={`px-4 py-2 rounded-md ${
+                  prevUrl
+                    ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
+                    : "bg-gray-300 cursor-not-allowed"
+                }`}
+              >
+                Previous
+              </button>
+              <button
+                onClick={handleNextPage}
+                disabled={!nextUrl}
+                className={`px-4 py-2 rounded-md ${
+                  nextUrl
+                    ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
+                    : "bg-gray-300 cursor-not-allowed"
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
+        {loading && <Loader />}
+        {error && <p>{error}</p>}
       </div>
-
-      {loading && <Loader />}
-      {error && <p>{error}</p>}
-    </>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ const UserCard = ({ user }) => {
 
   return (
     <div
-      className="p-4 m-4 rounded-lg shadow-lg"
+      className="p-4 m-2 rounded-lg shadow-lg  cursor-pointer border-2 border-white  hover:border-2 hover:border-gray-400"
       style={{ backgroundColor: hair_color }}
     >
       <div className="flex justify-between items-center mb-4">

@@ -1,38 +1,25 @@
-// Logo image
+// Importing logo image
 import logoImg from "../assets/logo.png";
 
 /**
  * Header Component
+ * @param {Function} handleSearch - Function to handle search input changes
  */
 const Header = ({ handleSearch }) => {
   return (
-    <div className="bg-blue-500 py-4 px-8 flex justify-between items-center sticky  top-0">
+    <div className="bg-blue-600 py-4 px-8 flex flex-row gap-10 justify-between items-center sticky top-0">
+      {/* Logo */}
       <div className="flex items-center">
-        <img src={logoImg} alt="Logo" className="h-8 mr-4" />
+        <img src={logoImg} alt="Logo" className="h-10 mr-4" />
       </div>
-      <div className="relative">
+      {/* Search Input */}
+      <div className="relative w-4/12">
         <input
           type="text"
           placeholder="Search"
-          className="border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-500"
+          className="border-2 border-fuchsia-200 text-lg rounded-2xl py-3 px-4 focus:outline-none focus:border-blue-500 w-full"
           onChange={handleSearch}
         />
-        <button className="absolute right-0 top-0 mt-2 mr-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
       </div>
     </div>
   );
